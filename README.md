@@ -1,17 +1,17 @@
 # WpOnUbuWithAnsible
-Ansible script that install locally wordpress on ubuntu.
+Ansible script that install locally WordPress on Ubuntu.
 
 ## About
-I made this for improving my ansible's skills and to understand how WordPress works, for production it's better to use other (ex. hosting service).
+I made this script to improve my ansible's skills and to understand how WordPress works, for production it's better to use other (ex. hosting service).
 
 ## Guide
-Change username and password for the db in wp.yml on that line with a better password and username, if you aren't lazy:
+Change username and password for the DB in wp.yml on that line with a better password and username:
 ```
 shell: sudo mysql -u root -e "CREATE USER username@localhost identified by 'changeme';"
 ```
-Run those commands for installing the service:
+Run those commands to install the service:
 ```
 sudo apt update && sudo apt install ansible -y
 ansible-playbook wp.yml
 ```
-After that follow the instruction on your browser using the ip of your pc or localhost.
+After that, follow the instructions on your browser using the IP address of your PC or localhost.
