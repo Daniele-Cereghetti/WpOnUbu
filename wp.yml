@@ -1,0 +1,65 @@
+- name: Install wordpress
+  hosts: localhost
+
+  become: yes
+
+  tasks:
+     # Dependeces
+     - name: installing Apache
+       apt: name=apache2
+     - name: installing ghostscript
+       apt: name=ghostscript
+     - name: installing libapache2-mod-php
+       apt: name=libapache2-mod-php
+     - name: installing mysql-server
+       apt: name=mysql-server
+     - name: installing php
+       apt: name=php
+     - name: installing php-bcmath
+       apt: name=php-bcmath
+     - name: installing php-curl
+       apt: name=php-curl
+     - name: installing php-imagick
+       apt: name=php-imagick
+     - name: installing php-intl
+       apt: name=php-intl
+     - name: installing php-json
+       apt: name=php-json
+     - name: installing php-mbstring
+       apt: name=php-mbstring
+     - name: installing php-mysql
+       apt: name=php-mysql
+     - name: installing php-xml
+       apt: name=php-xml
+     - name: installing php-zip
+       apt: name=php-zip
+
+     # Wordpress
+     - name: Create folder wordpress
+       shell: sudo mkdir -p /srv/www && sudo chown www-data /srv/www
+     - name: Inastall wordpress
+       shell: curl https://wordpress.org/latest.tar.gz | sudo -u www-data tar zx -C /srv/www
+
+     # Apache conf
+     - name: Configuring apache
+       copy:
+         src: apache.conf
+         dest: /etc/apache2/sites-available/wordpress.conf
+     - name: Enable wordpress site
+       shell: sudo a2ensite wordpress
+     - name: Enable URL rewriting
+       shell: sudo a2enmod rewrite
+     - name: Disable the default “It Works” site
+       shell: sudo a2dissite 000-default
+     - name: Restart apache service
+       service:
+         name: apache2
+         state: restarted
+
+     # Db conf
+     - name: Create db
+       shell: sudo mysql -u root -e "CREATE DATABASE wordpress"
+     - name: Create db user
+       shell: sudo mysql -u root -e "CREATE USER username@localhost identified by 'changeme';"
+     - name: Create db user
+       shell: sudo mysql -u root -e "GRANT ALL on wordpress.* to wpsite@localhost;"
