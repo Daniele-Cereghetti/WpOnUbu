@@ -7,7 +7,8 @@ I made this script to improve my ansible's skills and to understand how WordPres
 ## Guide
 Change username and password for the DB in wp.yml on that line with a better password and username:
 ```
-shell: sudo mysql -u root -e "CREATE USER username@localhost identified by 'changeme';"
+shell: sudo mysql -u root -e "CREATE USER username@localhost identified by 'password';"
+shell: sudo mysql -u root -e "GRANT ALL on wordpress.* to username@localhost;"
 ```
 Run those commands to install the service:
 ```
