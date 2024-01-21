@@ -13,6 +13,6 @@ shell: sudo mysql -u root -e "GRANT ALL on wordpress.* to username@localhost;"
 Run those commands to install the service:
 ```
 sudo apt update && sudo apt install ansible -y
-ansible-playbook wp.yml
+sudo ansible-playbook wp.yml
 ```
 After that, follow the instructions on your browser using the IP address of your PC or localhost.
