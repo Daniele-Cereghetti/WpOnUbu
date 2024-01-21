@@ -60,6 +60,6 @@
      - name: Create db
        shell: sudo mysql -u root -e "CREATE DATABASE wordpress"
      - name: Create db user
-       shell: sudo mysql -u root -e "CREATE USER username@localhost identified by 'changeme';"
+       shell: sudo mysql -u root -e "CREATE USER username@localhost identified by 'password';"
      - name: Create db user
-       shell: sudo mysql -u root -e "GRANT ALL on wordpress.* to wpsite@localhost;"
+       shell: sudo mysql -u root -e "GRANT ALL on wordpress.* to username@localhost;"
