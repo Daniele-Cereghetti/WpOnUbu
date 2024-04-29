@@ -1,4 +1,4 @@
-# WpOnUbuWithAnsible
+# AnisbleWordpress
 Ansible script that install locally WordPress on Ubuntu.
 
 ## About
